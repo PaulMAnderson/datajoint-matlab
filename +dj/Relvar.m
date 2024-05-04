@@ -244,6 +244,9 @@ classdef Relvar < dj.internal.GeneralRelvar & dj.internal.Table
                     placeholder = 'NULL';
                     value = [];
                 elseif header.attributes(attr_idx).isString
+                    if iscategorical(value)
+                        value = char(value);
+                    end
                     assert(dj.lib.isString(value), ...
                         'DataJoint:DataType:Mismatch', ...
                         'The field `%s` must be a character string', ...
